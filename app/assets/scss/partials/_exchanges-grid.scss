@@ -1,0 +1,53 @@
+#exchanges {
+    h3 {
+        font-size: 20px;
+    }
+    h3,
+    h4 {
+        font-family: $TradeGothic;
+        line-height: 250%;
+    }
+    span {
+        display: inline-block;
+        font-family: $TradeGothic;
+        padding-right: 5px;
+    }
+    p {
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 120%;
+    }
+    .best-exchange {
+        color: green;
+    }
+    .user-money-content {
+        position: relative;
+        margin: 20px 0;
+        .inside-input {
+            position: absolute;
+            left: 15px;
+            top: 13px;
+            font-size: 30px;
+        }
+        input[name="user_money"] {
+            border: 1px #ddd solid;
+            border-radius: 3px;
+            font-size: 30px;
+            padding: 10px 10px 10px 60px;
+        }
+    }
+    .item {
+        margin: 10px;
+        border: 1px solid #ddd;
+        padding: 20px;
+        display: inline-block;
+        width: 100%;
+        @media(min-width: $desktop) {
+            width: 25%;
+
+            &:nth-child(odd) {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+        }
+    }
+}

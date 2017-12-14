@@ -1,13 +1,25 @@
-*{
+* {
     box-sizing: border-box;
 }
-p, input, a, button{
+
+p,
+input,
+a,
+button,
+label {
     font-family: $TradeGothic;
     text-transform: uppercase;
 }
-.container{
+
+@include placeholder {
+    color: rgba(112, 112, 112, 0.4);
+}
+
+.container {
     width: 100%;
-    @media (min-width: $desktop){
+    padding: 0 calc(20/640 * 100%);
+    @media (min-width: $desktop) {
+        padding: 0;
         margin: 0 auto;
         min-width: 1004px;
         max-width: 1140px;
@@ -15,22 +27,22 @@ p, input, a, button{
     }
 }
 
-%space{
+%space {
     margin-bottom: 20px;
 }
 
-%clear{
+%clear {
     content: "";
     display: block;
     clear: both;
 }
 
-%trade-gothic-title{
+%trade-gothic-title {
     font-family: $TradeGothic;
     text-transform: uppercase;
     font-weight: bold;
     font-style: normal;
-    &:before{
+    &:before {
         content: "";
         position: absolute;
         top: 0;
@@ -38,57 +50,61 @@ p, input, a, button{
         height: 77%;
         background: #000;
         width: 1000px;
-        -webkit-transform: skew(-11deg,0);
-        -ms-transform: skew(-11deg,0);
-        transform: skew(-11deg,0);
+        -webkit-transform: skew(-11deg, 0);
+        -ms-transform: skew(-11deg, 0);
+        transform: skew(-11deg, 0);
         margin: 3px 12px 0 0;
     }
 }
 
-.button-red{
+.button-red {
     background-color: $red;
     position: relative;
     color: $white;
     padding: 15px;
-    &:before, &:after{
+    &:before,
+    &:after {
         background-color: $red;
         position: absolute;
         top: 0;
         content: "";
         width: 11px;
         height: 100%;
-        -webkit-transform: skew(-11deg,0);
-        -ms-transform: skew(-11deg,0);
-        transform: skew(-11deg,0);
+        -webkit-transform: skew(-11deg, 0);
+        -ms-transform: skew(-11deg, 0);
+        transform: skew(-11deg, 0);
     }
-    &:before{
+    &:before {
         left: -6px;
     }
-    &:after{
+    &:after {
         right: -6px;
     }
 }
 
-.button-black{
+.button-black {
     @extend .button-red;
     background-color: $black;
-    &:before, &:after{
+    &:before,
+    &:after {
         background-color: $black;
     }
 }
 
-.button-blue{
+.button-blue {
     @extend .button-red;
     background-color: $blue;
-    &:before, &:after{
+    &:before,
+    &:after {
         background-color: $blue;
     }
 }
 
-.button-orange{
+.button-orange {
     @extend .button-red;
     background-color: $orange;
-    &:before, &:after{
+    &:before,
+    &:after {
         background-color: $orange;
     }
 }

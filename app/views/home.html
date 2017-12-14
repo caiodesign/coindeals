@@ -3,19 +3,18 @@
     <div id="exchanges">
         <div class="container">
 
-            <input ng-model="user.money" value="{{user.money}}" type="number" ng-change="calcExchangeTax()"/>
-
-            <div class="item">
-                <h1>BitCoin Trade</h1>
-                <p>{{bitCoinTrade.noTax}}</p>
-                <p>{{bitCoinTrade.totalTax}}</p>
-                <p>{{bitCoinTrade.finalValue}}</p>
-                <p>{{bitCoinTradeData.buy}}</p>
+            <div class="user-money-content">
+                <label class="inside-input">R$ </label>
+                <input ng-model="user.money" placeholder="money to invest" name="user_money" value="{{user.money}}" type="number" ng-change="calcExchangeTax()" />
             </div>
-
-            <div class="item">
-                <h1>Negocie Coins</h1>
-                <p>{{negocieCoins.buy}}</p>
+            <!--  ng-class="{'best-value' : exchange.bestValue == true }" -->
+            <div ng-repeat="exchange in exchanges" class="item">
+                <h3>{{exchange.name}}</h3>
+                <div ng-show="user.money">
+                    <p><span>Without Taxes: </span> {{exchange.noTax | number : 7}}</p>
+                    <p><span>Taxes: </span> {{exchange.totalTax | number : 7}}</p>
+                    <p><span>Liquid: </span> {{exchange.withTax | number : 7}}</p>
+                </div>
             </div>
 
         </div>

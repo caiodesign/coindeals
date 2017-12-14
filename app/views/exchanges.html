@@ -1,0 +1,37 @@
+<div id="exchanges">
+    <div class="container">
+
+        <div class="user-money-content">
+            <label class="inside-input">R$ </label>
+            <input ng-model="user.money" placeholder="money to invest" name="user_money" value="{{user.money}}" type="number" ng-change="calcExchangeTax()"
+            />
+        </div>
+
+        <div class="item">
+            <h3>BitCoin Trade</h3>
+            <div ng-show="user.money">
+                <p>
+                    <span>Without Taxes: </span> {{bitCoinTrade.noTax | number : 7}}</p>
+                <p>
+                    <span>Taxes: </span> {{bitCoinTrade.totalTax | number : 7}}</p>
+                <p>
+                    <span>Liquid: </span> {{bitCoinTrade.finalValue | number : 7}}</p>
+            </div>
+            <h4>{{bitCoinTrade.buy | currency: 'R$'}}</h4>
+        </div>
+
+        <div class="item">
+            <h3>Negocie Coins</h3>
+            <div ng-show="user.money">
+                <p>
+                    <span>Without Taxes: </span> {{negocieCoins.noTax | number : 7}}</p>
+                <p>
+                    <span>Taxes: </span> {{negocieCoins.totalTax | number : 7}}</p>
+                <p>
+                    <span>Liquid: </span> {{negocieCoins.finalValue | number : 7}}</p>
+            </div>
+            <h4>{{negocieCoins.buy | currency: 'R$'}}</h4>
+        </div>
+
+    </div>
+</div>

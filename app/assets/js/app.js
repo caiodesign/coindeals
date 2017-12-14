@@ -16,3 +16,4 @@ function config( $stateProvider, $urlRouterProvider, $locationProvider ){
         });
 
 };
+
