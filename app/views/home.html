@@ -1,0 +1,24 @@
+<div id="home">
+
+    <div id="exchanges">
+        <div class="container">
+
+            <input ng-model="user.money" value="{{user.money}}" type="number" ng-change="calcExchangeTax()"/>
+
+            <div class="item">
+                <h1>BitCoin Trade</h1>
+                <p>{{bitCoinTrade.noTax}}</p>
+                <p>{{bitCoinTrade.totalTax}}</p>
+                <p>{{bitCoinTrade.finalValue}}</p>
+                <p>{{bitCoinTradeData.buy}}</p>
+            </div>
+
+            <div class="item">
+                <h1>Negocie Coins</h1>
+                <p>{{negocieCoins.buy}}</p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
