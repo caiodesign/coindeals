@@ -2,30 +2,32 @@ angular.module("app").controller("ExchangesController", function($scope, $scope,
 
     $scope.interval = 6000;
     $scope.user = {};
-
-    $scope.info = {
-
-        bitCoinTrade: {
-            tax: 0.005,
-            link: "https://www.bitcointrade.com.br/"
-        },
-        negocieCoins: {
-            tax: 0.005,
-            link: "https://www.negociecoins.com.br/"
-        },
-        mercadoBitcoin: {
-            tax: 0.007,
-            link: "https://www.mercadobitcoin.com.br/"
-        }
-    }
-
-    $scope.bestExchange = {
-        is: null
-    }
-
     $scope.exchanges = [];
 
-    
+    $scope.info = [
+
+        {
+            id: 0,
+            name: "Bitcoin Trade",
+            tax: 0.005,
+            endpoint: "https://api.bitcointrade.com.br/v1/public/BTC/ticker/",
+            link: "https://www.bitcointrade.com.br/"
+        },
+        {
+            id: 1,
+            name: "Negocie Coins",
+            tax: 0.005,
+            endpoint: "https://broker.negociecoins.com.br/api/v3/btcbrl/ticker",
+            link: "https://www.negociecoins.com.br/"
+        },
+        {
+            id: 2,
+            name: "Mercado Bitcoin",
+            tax: 0.007,
+            endpoint: "https://www.mercadobitcoin.net/api/BTC/ticker/",
+            link: "https://www.mercadobitcoin.com.br/"
+        }
+    ];
 
     $scope.calcExchangeTax = function () {
         
@@ -53,73 +55,35 @@ angular.module("app").controller("ExchangesController", function($scope, $scope,
 
     }
        
-    $scope.getBitCoinTrade = function(){
+    $scope.dataRequest = function(){
 
-        $http({
-            method: 'GET',
-            url: 'https://api.bitcointrade.com.br/v1/public/BTC/ticker/'
-            }).then(function successCallback(response) {
+        for(var i = 0; i < $scope.info.length; i++){
+            var _this = $scope.info[i];
 
-                $scope.exchanges[0] = response.data.data;
-                $scope.exchanges[0].name = "Bitcoin Trade";
-                $scope.exchanges[0].tax = $scope.info.bitCoinTrade.tax;
-                $scope.exchanges[0].link = $scope.info.bitCoinTrade.link;
-                $scope.calcExchangeTax();
+            $http({
+                method: 'GET',
+                url: _this.endpoint
+                }).then(function successCallback(response) {
+    
+                    $scope.exchange[_this.id] = response.data.data;
+                    $scope.exchange[_this.id].name = _this.name;
+                    $scope.exchange[_this.id].tax = _this.tax;
+                    $scope.exchange[_this.id].link = _this.link;
+                    $scope.calcExchangeTax();
+    
+                }, function errorCallback(response) {
+                    console.log(response);
+                });
+    
+                $timeout(function () {
+                    $scope.dataRequest();
+                }, $scope.interval);
+        }
 
-            }, function errorCallback(response) {
-                console.log(response);
-            });
-
-            $timeout(function () {
-                $scope.getBitCoinTrade();
-            }, $scope.interval);
-    }
-    $scope.getNegocieCoins = function () {
-        $http({
-            method: 'GET',
-            url: 'https://broker.negociecoins.com.br/api/v3/btcbrl/ticker'
-            }).then(function successCallback(response) {
-
-                $scope.exchanges[1] = response.data;
-                console.log($scope.exchanges[1]);
-                $scope.exchanges[1].name = "Negocie Coins"
-                $scope.exchanges[1].tax = $scope.info.negocieCoins.tax;
-                $scope.exchanges[1].link = $scope.info.negocieCoins.link;
-                $scope.calcExchangeTax();
-
-
-            }, function errorCallback(response) {
-                console.log(response);
-            });
-            $timeout(function () {
-                $scope.getNegocieCoins();
-            }, $scope.interval);
-    }
-
-    $scope.getMercadoBitcoin = function () {
-        $http({
-            method: 'GET',
-            url: 'https://www.mercadobitcoin.net/api/BTC/ticker/'
-            }).then(function successCallback(response) {
-
-                $scope.exchanges[2] = response.data.ticker;
-                $scope.exchanges[2].name = "Mercado Bitcoin";
-                $scope.exchanges[2].tax = $scope.info.mercadoBitcoin.tax;
-                $scope.exchanges[2].link = $scope.info.mercadoBitcoin.link;
-                $scope.calcExchangeTax();
-
-
-            }, function errorCallback(response) {
-                console.log(response);
-            });
-            $timeout(function () {
-                $scope.getNegocieCoins();
-            }, $scope.interval);
     }
 
 
-    $scope.getBitCoinTrade();
-    $scope.getNegocieCoins();
-    $scope.getMercadoBitcoin();
+    $scope.dataRequest();
+
 
 });
