@@ -3,7 +3,7 @@ angular.module("app").controller("ExchangesController", function($scope, $scope,
     $scope.interval = 6000;
     $scope.user = {};
     $scope.exchanges = [];
-
+    
     $scope.info = [
 
         {
@@ -11,6 +11,7 @@ angular.module("app").controller("ExchangesController", function($scope, $scope,
             name: "Bitcoin Trade",
             tax: 0.005,
             endpoint: "https://api.bitcointrade.com.br/v1/public/BTC/ticker/",
+            data: "data.data",
             link: "https://www.bitcointrade.com.br/"
         },
         {
@@ -18,6 +19,7 @@ angular.module("app").controller("ExchangesController", function($scope, $scope,
             name: "Negocie Coins",
             tax: 0.005,
             endpoint: "https://broker.negociecoins.com.br/api/v3/btcbrl/ticker",
+            data: "data",
             link: "https://www.negociecoins.com.br/"
         },
         {
@@ -25,6 +27,7 @@ angular.module("app").controller("ExchangesController", function($scope, $scope,
             name: "Mercado Bitcoin",
             tax: 0.007,
             endpoint: "https://www.mercadobitcoin.net/api/BTC/ticker/",
+            data: "data.ticker",
             link: "https://www.mercadobitcoin.com.br/"
         }
     ];
@@ -49,41 +52,35 @@ angular.module("app").controller("ExchangesController", function($scope, $scope,
                         exchange.bestValue = true;
                     }
                 }
-    
             }
         }
-
-    }
-       
-    $scope.dataRequest = function(){
-
-        for(var i = 0; i < $scope.info.length; i++){
-            var _this = $scope.info[i];
-
-            $http({
-                method: 'GET',
-                url: _this.endpoint
-                }).then(function successCallback(response) {
-    
-                    $scope.exchange[_this.id] = response.data.data;
-                    $scope.exchange[_this.id].name = _this.name;
-                    $scope.exchange[_this.id].tax = _this.tax;
-                    $scope.exchange[_this.id].link = _this.link;
-                    $scope.calcExchangeTax();
-    
-                }, function errorCallback(response) {
-                    console.log(response);
-                });
-    
-                $timeout(function () {
-                    $scope.dataRequest();
-                }, $scope.interval);
-        }
-
     }
 
+    $scope.dataRequest = function(i){
+        var _this = $scope.info[i];
+        $http({
+            method: 'GET',
+            url: _this.endpoint
+            }).then(function successCallback(response) {
 
-    $scope.dataRequest();
+                console.log(response);
+                $scope.exchanges[_this.id] = eval('response.'+_this.data);
+                $scope.exchanges[_this.id].name = _this.name;
+                $scope.exchanges[_this.id].tax = _this.tax;
+                $scope.exchanges[_this.id].link = _this.link;
+                $scope.calcExchangeTax();
 
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+
+            $timeout(function () {
+                $scope.dataRequest();
+            }, $scope.interval);
+    }
+
+    for (var i = 0; i < $scope.info.length; i++) {
+        $scope.dataRequest(i);
+    }
 
 });
