@@ -8,7 +8,7 @@ function config( $stateProvider, $urlRouterProvider, $locationProvider ){
         .state('home', {
             url: '/home',
             templateUrl: 'views/home.html',
-            controller: 'ExchangesController as compare'
+            controller: 'ExchangesController'
         });
         $locationProvider.html5Mode({
             enabled: !0,
@@ -16,3 +16,4 @@ function config( $stateProvider, $urlRouterProvider, $locationProvider ){
         });
 
 };
+

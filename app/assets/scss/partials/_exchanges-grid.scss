@@ -1,0 +1,79 @@
+#exchanges {
+    h3 {
+        font-size: 20px;
+        display: inline-block;
+        font-family: $TradeGothic;
+        line-height: 200%;
+    }
+    h4{
+        font-family: $TradeGothic;
+        @extend %space;
+    }
+    p {
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 140%;
+    }
+    span {
+        display: inline-block;
+        font-family: $TradeGothic;
+        padding-right: 5px;
+        &.best-exchange{
+            padding-left: 5px;
+            display: inline-block;
+        }
+    }
+    
+    .best-exchange {
+        h3{
+            color: $blue;
+        }
+    }
+    .exchange-link{
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+        background-color: $black;
+        color: $extra-black;
+        border-top: 1px solid #ddd;
+        transition: all .2s linear;
+        &:hover{
+            background-color: $yellow;
+            color: $white;
+        }
+        a{
+            color: $white;
+        }
+    }
+    .user-money-content {
+        position: relative;
+        margin: 20px 0;
+        .inside-input {
+            position: absolute;
+            left: 15px;
+            top: 13px;
+            font-size: 30px;
+        }
+        input[name="user_money"] {
+            border: 1px #ddd solid;
+            border-radius: 3px;
+            font-size: 30px;
+            padding: 10px 10px 10px 60px;
+        }
+    }
+    .item {
+        display: inline-block;
+        width: 100%;
+        margin: 10px 10px 0;
+        border: 1px solid #ddd;
+        @media(min-width: $desktop) {
+            width: 25%;
+            &:nth-child(odd) {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+        }
+        > div{
+            padding: 20px;
+        }
+    }
+}

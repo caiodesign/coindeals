@@ -1,24 +1,49 @@
 <div id="home">
+<a ui-sref="exchanges">Go to exchange page</a>
+
+    <div class="exchanges-filter">
+        <form>
+            <input placeholder="Money to invest" type="number">
+            <select>
+
+            </select>
+            <select>
+                
+            </select>
+            <select>
+                
+            </select>
+
+            <button type="submit">buscar</button>
+        </form>
+    </div>
 
     <div id="exchanges">
         <div class="container">
 
-            <input ng-model="user.money" value="{{user.money}}" type="number" ng-change="calcExchangeTax()"/>
-
-            <div class="item">
-                <h1>BitCoin Trade</h1>
-                <p>{{bitCoinTrade.noTax}}</p>
-                <p>{{bitCoinTrade.totalTax}}</p>
-                <p>{{bitCoinTrade.finalValue}}</p>
-                <p>{{bitCoinTradeData.buy}}</p>
+            <div class="user-money-content">
+                <label class="inside-input">R$ </label>
+                <input ng-model="user.money" placeholder="money to invest" name="user_money" value="{{user.money}}" type="number" ng-change="calcExchangeTax()" />
             </div>
-
-            <div class="item">
-                <h1>Negocie Coins</h1>
-                <p>{{negocieCoins.buy}}</p>
+            <!--  ng-class="{'best-value' : exchange.bestValue == true }" -->
+            <div ng-repeat="exchange in exchanges track by $index" class="item" ng-show="user.money" ng-class="{'best-exchange' : exchange.bestValue}">
+                <div>
+                    <h3>{{exchange.name}} </h3>
+                    <span ng-class="{'best-exchange' : exchange.bestValue}" ng-show="exchange.bestValue"> (Best Deal)</span>
+                    
+                    <h4>Bitcoin Price: {{exchange.buy | currency : 'R$'}}</h4>
+                    <div>
+                        <p><span>Fee: </span> {{exchange.totalTax | number : 7}}</p>
+                        <p><span>BTC: </span> {{exchange.withTax | number : 7}}</p>
+                    </div>
+                </div>  
+                <div class="exchange-link">
+                    <a href="{{exchange.link}}" target="_BLANK">visit exchange</a>
+                </div>
             </div>
 
         </div>
     </div>
+
 
 </div>
