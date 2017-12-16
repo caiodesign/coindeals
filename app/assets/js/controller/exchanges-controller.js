@@ -1,6 +1,6 @@
 angular.module("app").controller("ExchangesController", function($scope, $scope, $http, $timeout){
 
-    $scope.interval = 6000;
+    $scope.interval = 60000;
     $scope.user = {};
     $scope.exchanges = [];
     
@@ -12,7 +12,8 @@ angular.module("app").controller("ExchangesController", function($scope, $scope,
             tax: 0.005,
             endpoint: "https://api.bitcointrade.com.br/v1/public/BTC/ticker/",
             data: "data.data",
-            link: "https://www.bitcointrade.com.br/"
+            link: "https://www.bitcointrade.com.br/",
+            currency: "BRL"
         },
         {
             id: 1,
@@ -20,7 +21,8 @@ angular.module("app").controller("ExchangesController", function($scope, $scope,
             tax: 0.005,
             endpoint: "https://broker.negociecoins.com.br/api/v3/btcbrl/ticker",
             data: "data",
-            link: "https://www.negociecoins.com.br/"
+            link: "https://www.negociecoins.com.br/",
+            currency: "BRL"
         },
         {
             id: 2,
@@ -28,7 +30,8 @@ angular.module("app").controller("ExchangesController", function($scope, $scope,
             tax: 0.007,
             endpoint: "https://www.mercadobitcoin.net/api/BTC/ticker/",
             data: "data.ticker",
-            link: "https://www.mercadobitcoin.com.br/"
+            link: "https://www.mercadobitcoin.com.br/",
+            currency: "BRL"
         }
     ];
 
@@ -37,21 +40,9 @@ angular.module("app").controller("ExchangesController", function($scope, $scope,
         if($scope.user.money != undefined){
             for (var i = 0; i < $scope.exchanges.length; i++) {
                 var exchange = $scope.exchanges[i];
-    
                 exchange.noTax = $scope.user.money / exchange.buy;
                 exchange.totalTax = exchange.noTax * exchange.tax;
                 exchange.withTax = exchange.noTax - exchange.totalTax;
-    
-                var d = i - 1;
-    
-                if(i == 0){
-                    exchange.bestValue = true;
-                } else {
-                    if(exchange.withTax > $scope.exchanges[d].withTax){
-                        $scope.exchanges[d].bestValue = false;
-                        exchange.bestValue = true;
-                    }
-                }
             }
         }
     }
@@ -73,14 +64,17 @@ angular.module("app").controller("ExchangesController", function($scope, $scope,
             }, function errorCallback(response) {
                 console.log(response);
             });
-
-            $timeout(function () {
-                $scope.dataRequest();
-            }, $scope.interval);
     }
 
-    for (var i = 0; i < $scope.info.length; i++) {
-        $scope.dataRequest(i);
-    }
+    $scope.loopRequest = function () {
+        for (var i = 0; i < $scope.info.length; i++) {
+            $scope.dataRequest(i);
+        }
 
+        $timeout(function () {
+            $scope.loopRequest();
+        }, $scope.interval);
+    }
+    $scope.loopRequest();
+    
 });

@@ -11,6 +11,10 @@ label {
     text-transform: uppercase;
 }
 
+input[name="money_to_invest"]{
+    border: 1px solid #ddd;
+}
+
 @include placeholder {
     color: rgba(112, 112, 112, 0.4);
 }

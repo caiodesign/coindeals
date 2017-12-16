@@ -21,8 +21,7 @@
             padding-left: 5px;
             display: inline-block;
         }
-    }
-    
+    }   
     .best-exchange {
         h3{
             color: $blue;
@@ -44,22 +43,7 @@
             color: $white;
         }
     }
-    .user-money-content {
-        position: relative;
-        margin: 20px 0;
-        .inside-input {
-            position: absolute;
-            left: 15px;
-            top: 13px;
-            font-size: 30px;
-        }
-        input[name="user_money"] {
-            border: 1px #ddd solid;
-            border-radius: 3px;
-            font-size: 30px;
-            padding: 10px 10px 10px 60px;
-        }
-    }
+    
     .item {
         display: inline-block;
         width: 100%;

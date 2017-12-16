@@ -1,32 +1,35 @@
 <div id="home">
-<a ui-sref="exchanges">Go to exchange page</a>
-
-    <!--<div class="exchanges-filter">
-        <form>
-            <input placeholder="Money to invest" type="number">
-            <select>
-
-            </select>
-            <select>
-                
-            </select>
-            <select>
-                
-            </select>
-
-            <button type="submit">buscar</button>
-        </form>
-    </div>-->
+    <div class="container">
+        <div class="exchanges-filter">
+            <form>
+                <div class="user-money-content">     
+                    <label class="inside-input">R$ </label>
+                    <input 
+                    ng-model="user.money" 
+                    placeholder="money to invest" 
+                    name="user_money" 
+                    value="{{user.money}}" 
+                    type="number" 
+                    ng-change="calcExchangeTax()" 
+                    min="1" max="9999999" 
+                    prevent-typing-greater
+                    />   
+                </div>
+            </form>
+        </div>
+    </div>
 
     <div id="exchanges">
         <div class="container">
 
-            <div class="user-money-content">
-                <label class="inside-input">R$ </label>
-                <input ng-model="user.money" placeholder="money to invest" name="user_money" value="{{user.money}}" type="number" ng-change="calcExchangeTax()" />
-            </div>
+            
             <!--  ng-class="{'best-value' : exchange.bestValue == true }" -->
-            <div ng-repeat="exchange in exchanges track by $index" class="item" ng-show="user.money" ng-class="{'best-exchange' : exchange.bestValue}">
+            <div 
+            ng-repeat="exchange in exchanges | orderBy:'-withTax'" 
+            class="item" 
+            ng-show="user.money" 
+            ng-class="{'best-exchange' : $index == 0}"
+            >
                 <div>
                     <h3>{{exchange.name}} </h3>
                     <span ng-class="{'best-exchange' : exchange.bestValue}" ng-show="exchange.bestValue"> (Best Deal)</span>
