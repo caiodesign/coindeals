@@ -32,6 +32,15 @@ angular.module("app").controller("ExchangesController", function($scope, $scope,
             data: "data.ticker",
             link: "https://www.mercadobitcoin.com.br/",
             currency: "BRL"
+        },
+        {
+            id: 3,
+            name: "Mercado Bitcoin",
+            tax: 0.007,
+            endpoint: "https://www.mercadobitcoin.net/api/BTC/ticker/",
+            data: "data.ticker",
+            link: "https://www.mercadobitcoin.com.br/",
+            currency: "BRL"
         }
     ];
 

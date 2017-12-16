@@ -1,17 +1,10 @@
 #exchanges {
-    h3 {
-        font-size: 20px;
-        display: inline-block;
-        font-family: $TradeGothic;
-        line-height: 200%;
-    }
-    h4{
-        font-family: $TradeGothic;
-        @extend %space;
-    }
-    p {
-        font-family: Arial, Helvetica, sans-serif;
-        line-height: 140%;
+    .container{
+        @media(min-width: $desktop){
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+        }
     }
     span {
         display: inline-block;
@@ -51,14 +44,11 @@
         margin: 10px 10px 0;
         border: 1px solid #ddd;
         @media(min-width: $desktop) {
-            width: 25%;
-            &:nth-child(odd) {
-                margin-left: 20px;
-                margin-right: 20px;
-            }
+            margin: 0;
+            width: calc(25% - 15px);
         }
         > div{
-            padding: 30px;
+            padding: 20px;
         }
     }
 }

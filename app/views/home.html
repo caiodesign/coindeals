@@ -1,6 +1,15 @@
 <div id="home">
-    <div class="container">
-        <div class="exchanges-filter">
+
+    <div id="header">
+        <div class="container">
+            <div class="logo">
+                <h1>coindeals.io</h1>
+            </div>
+        </div>
+    </div>
+    
+    <div class="exchanges-filter">
+        <div class="container">
             <form>
                 <div class="user-money-content">     
                     <label class="inside-input">R$ </label>
@@ -32,7 +41,7 @@
             >
                 <div>
                     <h3>{{exchange.name}} </h3>
-                    <span ng-class="{'best-exchange' : exchange.bestValue}" ng-show="exchange.bestValue"> (Best Deal)</span>
+                    <span class="best-exchange" ng-show="$index == 0"> (Best Deal)</span>
                     
                     <h4>Bitcoin Price: {{exchange.buy | currency : 'R$'}}</h4>
                     <div>

@@ -1,37 +1,59 @@
-.exchanges-filter{
-    //padding: 60px 30px;
-    //border: 1px solid #ddd;
-    .user-money-content {
+#home{
+    #header{
+        margin: 40px 0;
+    }
+    .logo{
         position: relative;
-        margin: 20px 0;
-        display: inline-block;
-        .inside-input {
+        margin: 0 auto;
+        border-radius: 50%;
+        width: 285px;
+        height: 285px;
+        border: 10px solid $extra-black;
+        background-color: $blue;
+        h1{
+            text-align: center;
+            color: $white;
             position: absolute;
-            left: 15px;
-            top: 13px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    .exchanges-filter{
+        //padding: 60px 30px;
+        //border: 1px solid #ddd;
+        .user-money-content {
+            position: relative;
+            margin: 20px 0;
+            display: inline-block;
+            .inside-input {
+                position: absolute;
+                left: 15px;
+                top: 13px;
+                font-size: 30px;
+            }
+        }
+        input[name="user_money"] {
+            border: 1px #ddd solid;
+            border-radius: 3px;
+            font-size: 30px;
+            padding: 10px 10px 10px 60px;
+            display: inline-block;
+            width: 100%;
+            @media(min-width: $desktop){
+                width: 330px;
+            }
+        }
+        select{
+            display: inline-block;
+            font-size: 30px;
+            padding: 10px;
+            margin: 0 10px;
+        }
+        submit{
+            background-color: $black;
+            color: $white;
             font-size: 30px;
         }
-    }
-    input[name="user_money"] {
-        border: 1px #ddd solid;
-        border-radius: 3px;
-        font-size: 30px;
-        padding: 10px 10px 10px 60px;
-        display: inline-block;
-        width: 100%;
-        @media(min-width: $desktop){
-            width: 330px;
-        }
-    }
-    select{
-        display: inline-block;
-        font-size: 30px;
-        padding: 10px;
-        margin: 0 10px;
-    }
-    submit{
-        background-color: $black;
-        color: $white;
-        font-size: 30px;
     }
 }
