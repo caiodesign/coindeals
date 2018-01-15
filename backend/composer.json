@@ -1,0 +1,16 @@
+{
+    "name": "caio.oliveira/coindeals",
+    "description": "A simple app to compare exchanges from Brazil",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Caio Oliveira",
+            "email": "contato@caiodesign.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "guzzlehttp/guzzle": "^6.2@dev"
+    }
+}

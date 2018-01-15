@@ -12,3 +12,5 @@ dist
 *.sln
 
 data
+
+/backend/vendor/
