@@ -41,7 +41,7 @@
             >
                 <div>
                     <h3>{{exchange.name}} </h3>
-                    <span class="best-exchange" ng-show="$index == 0"> (Best Deal)</span>
+                    <span class="highlight" ng-show="$index == 0"> (Best Deal)</span>
                     
                     <h4>Bitcoin Price: {{exchange.buy | currency : 'R$'}}</h4>
                     <div>
